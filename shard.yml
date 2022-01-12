@@ -7,3 +7,9 @@ authors:
 crystal: 1.1.0
 
 license: MIT
+
+dependencies:
+  habitat:
+    github: luckyframework/habitat
+  redis:
+    github: stefanwille/crystal-redis
