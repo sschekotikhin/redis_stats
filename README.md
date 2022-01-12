@@ -1,6 +1,6 @@
 # redis_stats
 
-TODO: Write a description here
+5m-30m-1d stats for tracking of code execution duration.
 
 ## Installation
 
@@ -20,11 +20,52 @@ TODO: Write a description here
 require "redis_stats"
 ```
 
-TODO: Write usage instructions here
+### Basic example
 
-## Development
+```crystal
+# configure
+RedisStats.configure do |config|
+  config.redis = Redis::PooledClient.new(
+    host: "localhost",
+    port: 6379,
+    database: 0,
+    pool_size: 10
+  )
+  config.ttl = 10.minutes
+  config.prefix = "redis_stats"
+end
 
-TODO: Write development instructions here
+# add method
+t0 = Time.local
+
+# ...
+# some code
+# ...
+
+t1 = Time.local
+
+# `key` - any string key
+# `duration` - duration of executed code, milliseconds
+RedisStats.add(key: "foo", duration: (t1 - t0).total_milliseconds)
+
+# stats method
+# Retrieves statistics from Redis.
+RedisStats.stats
+# => {
+#   "foo" => {
+#     "5m" => "0.3ms",   # last 5 minutes
+#     "30m" => "0.5ms",  # last 30 minutes
+#     "1d" => "0.55ms",  # last day
+#     "max" => "0.7ms",  # max stored duration
+#     "min" => "0.05ms", # min stored duration
+#     "count" => "100"   # count of stored records
+#   }
+# }
+
+# del_expired_stats method
+# Removes all stats, which ttl expired.
+RedisStats.del_expired_stats
+```
 
 ## Contributing
 

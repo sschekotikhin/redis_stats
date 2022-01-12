@@ -25,12 +25,16 @@ module RedisStats
   # Generates general statistics for all keys hashset.
   #
   # Returns array of hashes with stats.
-  def self.stats : Array(Hash(String, Hash(String, String)))
-    keys.compact_map do |key|
+  def self.stats : Hash(String, Hash(String, String))
+    result = {} of String => Hash(String, String)
+
+    keys.each do |key|
       data = _stats(key)
 
-      { key => data } if data
+      result[key] = data if data
     end
+
+    result
   end
 
   # Removes all expired statistics.
