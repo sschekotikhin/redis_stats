@@ -9,7 +9,7 @@ TODO: Write a description here
    ```yaml
    dependencies:
      redis_stats:
-       github: your-github-user/redis_stats
+       github: sschekotikhin/redis_stats
    ```
 
 2. Run `shards install`
