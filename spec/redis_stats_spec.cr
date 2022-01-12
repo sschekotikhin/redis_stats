@@ -57,13 +57,13 @@ describe RedisStats do
         RedisStats.stats.keys.first.matches?(/foo/).should eq true
         RedisStats.stats.should eq({
           "foo" => {
-            "5m" => "0.1ms",
-            "30m" => "0.1ms",
-            "1d" => "0.1ms",
-            "max" => "0.1ms",
-            "min" => "0.1ms",
-            "count" => "1"
-          }
+            "5m"    => "0.1ms",
+            "30m"   => "0.1ms",
+            "1d"    => "0.1ms",
+            "max"   => "0.1ms",
+            "min"   => "0.1ms",
+            "count" => "1",
+          },
         })
       end
     end

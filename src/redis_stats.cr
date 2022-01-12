@@ -62,12 +62,12 @@ module RedisStats
     end
 
     {
-      "5m" => !five.empty? ? "#{(five.sum / five.size).round(2)}ms" : "",
-      "30m" => !thirty.empty? ? "#{(thirty.sum / thirty.size).round(2)}ms" : "",
-      "1d" => !day.empty? ? "#{(day.sum / day.size).round(2)}ms" : "",
-      "max" => !day.empty? ? "#{day.max.round(2)}ms" : "",
-      "min" => !day.empty? ? "#{day.min.round(2)}ms" : "",
-      "count" => day.size.to_s
+      "5m"    => !five.empty? ? "#{(five.sum / five.size).round(2)}ms" : "",
+      "30m"   => !thirty.empty? ? "#{(thirty.sum / thirty.size).round(2)}ms" : "",
+      "1d"    => !day.empty? ? "#{(day.sum / day.size).round(2)}ms" : "",
+      "max"   => !day.empty? ? "#{day.max.round(2)}ms" : "",
+      "min"   => !day.empty? ? "#{day.min.round(2)}ms" : "",
+      "count" => day.size.to_s,
     }
   end
 
