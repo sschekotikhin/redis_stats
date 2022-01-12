@@ -79,4 +79,4 @@ RedisStats.del_expired_stats
 
 ## Contributors
 
-- [SShekotihin](https://github.com/your-github-user) - creator and maintainer
+- [SShekotihin](https://github.com/sschekotikhin) - creator and maintainer
