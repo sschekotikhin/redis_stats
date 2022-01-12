@@ -1,5 +1,6 @@
 require "habitat"
 require "redis"
+require "json"
 
 # :nodoc:
 module RedisStats
@@ -94,7 +95,7 @@ module RedisStats
 
   # Form array with all presented stats keys in Redis.
   #
-  # Return array of string keys.я
+  # Return array of string keys.
   private def self.keys
     index = 0
 
