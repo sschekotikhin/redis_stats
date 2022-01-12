@@ -1,5 +1,3 @@
-[![Crystal CI](https://github.com/sschekotikhin/redis_stats/actions/workflows/crystal.yml/badge.svg?branch=master)](https://github.com/sschekotikhin/redis_stats/actions/workflows/crystal.yml)
-
 # redis_stats
 
 5m-30m-1d stats for tracking of code execution duration.
