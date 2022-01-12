@@ -1,0 +1,9 @@
+name: redis_stats
+version: 0.1.0
+
+authors:
+  - SShekotihin <sshekotihindev@gmail.com>
+
+crystal: 1.1.0
+
+license: MIT
