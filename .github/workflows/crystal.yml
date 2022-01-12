@@ -2,18 +2,51 @@ name: Crystal CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   pull_request:
-    branches: [ master ]
+    branches:
+      - master
+  schedule:
+    - cron: '0 */12 * * *'
 
 jobs:
-  build:
+  check_format:
     runs-on: ubuntu-latest
-    container:
-      image: crystallang/crystal
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: shards install
-    - name: Run tests
-      run: crystal spec
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: latest
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: shards install
+      - name: Format
+        run: crystal tool format --check
+      - name: Lint
+        run: ./bin/ameba
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        crystal: [latest, nightly]
+    services:
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+        ports:
+          - 6379:6379
+    steps:
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+        with:
+          crystal: ${{ matrix.crystal }}
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install dependencies
+        run: shards install
+      - name: Run tests
+        run: crystal spec
