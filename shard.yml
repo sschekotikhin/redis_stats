@@ -13,7 +13,7 @@ dependencies:
     github: luckyframework/habitat
   redis:
     github: stefanwille/crystal-redis
-    version: <= 2.7.0
+    version: ">= 2.8.0"
 
 development_dependencies:
   ameba:

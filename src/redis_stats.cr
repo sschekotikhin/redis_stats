@@ -96,18 +96,7 @@ module RedisStats
   # Form array with all presented stats keys in Redis.
   #
   # Return array of string keys.
-  private def self.keys
-    index = 0
-
-    settings.redis.hgetall(settings.prefix).compact_map do |v|
-      if index % 2 != 0
-        index += 1
-        next
-      end
-
-      index += 1
-
-      v.to_s
-    end
+  private def self.keys : Array(String)
+    settings.redis.hgetall(settings.prefix).keys
   end
 end
