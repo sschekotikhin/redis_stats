@@ -76,7 +76,6 @@ module RedisStats
     parsed_values = values(key: key)
     parsed_values = parsed_values.select { |value| value["created_at"] > settings.ttl.ago }
 
-    # пишем обновленную статистику
     settings.redis.hset(settings.prefix, key, parsed_values.to_json)
   end
 
